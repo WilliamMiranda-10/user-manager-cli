@@ -1,40 +1,37 @@
 let users = [];
 let id = 1;
 
-function addUser(id, name, email, password) {
+function addUser(name, email, password) {
   const user = {
     id: id++,
     name,
     email,
     password,
   };
+  //adiciona um novo usuário á lista em memoria
   users.push(user);
 }
 
-// listUsers;
 function listUsers() {
   users.forEach((user) => {
-    console.log(`${user.id}- ${user.name} ${user.email}`); //lista todos os usuários
+    console.log(`${user.id}- ${user.name} -  ${user.email}`); //lista todos os usuários
   });
 }
 
-listUsers(users);
-
-// findUser;
 function findUser(name) {
-  return users.filter((user) =>
-    user.name.toLowerCase().includes(name.toLowerCase())
-  ); //busca usuário com o nome!
+  return users.filter(
+    (user) => user.name.toLowerCase().includes(name.toLowerCase())
+    // Busca usuários pelo nome (case insensitive e com correspondência parcial)
+  );
 }
 
-//removerUser
 function removeUser(id) {
-  users.filter((user) => user.id !== id); //remove o usuário com id
+  users = users.filter((user) => user.id !== id);
+  // Remove usuário pelo id
 }
 
-// updateUser
-function updateUser(data, id, name, email, password) {
-  const user = data.find((user) => user.id === id); //identifica o usuario com id e atualiza.
+function updateUser(id, name, email, password) {
+  const user = users.find((user) => user.id === id); //identifica o usuario com id e atualiza.
   if (user) {
     user.name = name;
     user.email = email;
